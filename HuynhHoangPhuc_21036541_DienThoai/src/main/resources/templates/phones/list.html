@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone List</title>
+</head>
+<body>
+<h1>Phone List</h1>
+<button onclick="window.location.href='/phones/add'">Add Phone</button>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Phone Name</th>
+        <th>Address</th>
+        <th>Cost Price</th>
+        <th>Category</th>
+        <th>Supplier</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="phone : ${phones}">
+        <td th:text="${phone.id}"></td>
+        <td th:text="${phone.phoneName}"></td>
+        <td th:text="${phone.address}"></td>
+        <td th:text="${phone.costPrice}"></td>
+        <td th:text="${phone.category.getTenloai()}"></td>
+        <td th:text="${phone.supplier}"></td>
+        <td><a th:href="@{'/phones/update/' + ${phone.id}}">Update</a></td>
+        <td><a href="#" th:href="@{'/phones/delete/' + ${phone.id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
