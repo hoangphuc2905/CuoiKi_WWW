@@ -38,7 +38,7 @@
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="/phones/list" class="btn btn-secondary">Cancel</a>
     </form>
-    <div th:if="${error}" class="alert alert-danger">
+    <div th:if="${error}" class="alert alert-danger" style="color: red">
         <span th:text="${error}"></span>
     </div>
 </div>

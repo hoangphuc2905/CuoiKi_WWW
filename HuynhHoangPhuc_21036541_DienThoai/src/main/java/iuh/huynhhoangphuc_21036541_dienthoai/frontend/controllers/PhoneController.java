@@ -85,7 +85,7 @@ public class PhoneController {
             return "phones/update";
         }
 
-        if (phone.getCategory() == null || phone.getCategory().getId() == 0) {
+        if (phone.getCategory() == null) {
             model.addAttribute("error", "Loại điện thoại không được để trống.");
             return "phones/update";
         }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Đơn hàng</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Danh sách Đơn hàng</h2>
+    <button onclick="window.location.href='/donhang/add'" class="btn btn-primary">Thêm Đơn hàng</button>
+
+    <form action="/donhang/search" method="get">
+        <div>
+            <label>
+                <input type="radio" name="searchType" value="madonhang" checked>
+                Mã Đơn Hàng
+            </label>
+            <label>
+                <input type="radio" name="searchType" value="tencuahang">
+                Tên Cửa Hàng
+            </label>
+        </div>
+        <input type="text" name="search" placeholder="Nhập thông tin tìm kiếm" required>
+        <button type="submit">Tìm kiếm</button>
+        <button onclick="window.location.href='/donhang/list'">Xem tất cả</button>
+    </form>
+
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Mã Đơn hàng</th>
+            <th>Tên khách hàng</th>
+            <th>Email</th>
+            <th>Ngày đặt hàng</th>
+            <th>Sản phẩm</th>
+            <th>Trạng thái</th>
+            <th>Cửa hàng</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="donHang : ${donhangs}">
+            <td th:text="${donHang.madonhang}">Mã đơn hàng</td>
+            <td th:text="${donHang.tenkhachhang}">Tên khách hàng</td>
+            <td th:text="${donHang.email}">Email</td>
+            <td th:text="${donHang.ngaydathang}">Ngày đặt hàng</td>
+            <td th:text="${donHang.tensp}">Tên sản phẩm</td>
+            <td th:text="${donHang.trangthai}">Trạng thái</td>
+            <td th:text="${donHang.getMacuahang().getTen()}">Tên cửa hàng</td>
+            <td>
+                <a th:if="${donHang.getTrangthai().ordinal() == 0}" th:href="@{'/donhang/delete/' + ${donHang.id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<button href="/"> Trở về trang chủ</button>
+</body>
+</html>
