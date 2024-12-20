@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách đơn hàng</title>
+</head>
+<body>
+
+<h2>Danh sách đơn hàng</h2>
+
+<a href="/donhang/add">Thêm đơn hàng</a>
+<form action="/donhang/search" method="get">
+    <input type="text" name="keyword" placeholder="Nhập tìm kiếm">
+    <button type="submit">Tìm kiếm</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Mã đơn hàng</th>
+        <th>Tên khách hàng</th>
+        <th>Email</th>
+        <th>Ngày đặt hàng</th>
+        <th>Tên sản phẩm</th>
+        <th>Trạng thái</th>
+        <th>Tên cửa hàng</th>
+        <th>Chức năng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="donhang : ${donhangs}">
+        <td th:text="${donhang.madonhang}"></td>
+        <td th:text="${donhang.tenkhachhang}"></td>
+        <td th:text="${donhang.email}"></td>
+        <td th:text="${donhang.ngaydathang}"></td>
+        <td th:text="${donhang.tensanpham}"></td>
+        <td th:text="${donhang.trangthai}"></td>
+        <td th:text="${donhang.macuahang.getTen()}"></td>
+        <td>
+        <a th:if="${donhang.getTrangthai().ordinal() == 0}" th:href="@{'/donhang/delete/' + ${donhang.id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

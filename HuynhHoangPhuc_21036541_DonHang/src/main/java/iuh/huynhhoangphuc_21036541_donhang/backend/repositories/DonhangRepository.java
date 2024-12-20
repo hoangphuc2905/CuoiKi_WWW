@@ -1,12 +1,9 @@
 package iuh.huynhhoangphuc_21036541_donhang.backend.repositories;
 
 import iuh.huynhhoangphuc_21036541_donhang.backend.models.Donhang;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.lang.Nullable;
 
 import java.time.LocalDate;
 import java.util.List;

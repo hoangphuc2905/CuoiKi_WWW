@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm đơn hàng</title>
+</head>
+<body>
+
+<h2>Thêm đơn hàng</h2>
+
+<form action="/donhang/add" method="post">
+
+    <div class="form-group">
+    <label for="madonhang">Mã đơn hàng</label>
+    <input type="text" id="madonhang" name="madonhang" th:value="${madonhang}" required disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="tenkhachhang">Tên khách hàng</label>
+        <input type="text" id="tenkhachhang" name="tenkhachhang" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+
+    <div class="form-group">
+        <label for="ngaydathang">Ngày đặt hàng</label>
+        <input type="date" id="ngaydathang" name="ngaydathang" required>
+    </div>
+
+    <div class="form-group">
+        <label for="tensanpham">Tên sản phẩm</label>
+        <input type="text" id="tensanpham" name="tensanpham" required>
+    </div>
+
+    <div class="form-group">
+        <label>Trạng thái</label>
+        <input type="radio" id="chapnhan" name="trangthai" value="Chap_Nhan" required checked> Chấp nhận
+        <input type="radio" id="chuachapnhan" name="trangthai" value="Chua_Chap_Nhan" required >Chưa Chấp nhận
+    </div>
+
+    <div class="form-group">
+        <label for="macuahang">Tên cửa hàng</label>
+        <select id="macuahang" name="macuahang" required>
+            <option value="" selected disabled>Chọn cửa hàng</option>
+            <th:block th:each="cuahang : ${cuahangs}">
+                <option th:value="${cuahang.id}" th:text="${cuahang.ten}"></option>
+            </th:block>
+        </select>
+    </div>
+
+    <button type="submit">Thêm</button>
+    <span th:if="${error}" th:text="${error}" style="color: red"></span>
+</form>
+</body>
+</html>
