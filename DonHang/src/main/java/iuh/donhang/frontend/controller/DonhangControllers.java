@@ -5,6 +5,7 @@ import iuh.donhang.backend.models.Cuahang;
 import iuh.donhang.backend.models.Donhang;
 import iuh.donhang.backend.services.DonhangServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -77,10 +78,12 @@ public class DonhangControllers {
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/delete/{id}")
-    public String deleteDonhang(@PathVariable int id) {
+    public ModelAndView deleteDonhang(ModelAndView modelAndView, @PathVariable int id) {
         donhangServices.deleteDonhang(id);
-        return "redirect:/donhang/list";
+        modelAndView.setViewName("redirect:/donhang/list");
+        return modelAndView;
     }
 
     @GetMapping("/search")
